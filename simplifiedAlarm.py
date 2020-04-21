@@ -16,7 +16,7 @@ def regsetup():
     
 
 def alarmnoise():
-    player = vlc.MediaPlayer("/home/gcullen/Downloads/'Big Yoshis Lounge.mp4'")
+    player = vlc.MediaPlayer("/home/gcullen/Downloads/BigYoshisLounge.mp4")
     def play():
         player.play()
     while(True):
@@ -27,9 +27,14 @@ def comparetime(alarmHour, alarmMinute):
     #datetime.time(now.hour, now.minute, now.second):
     while(True):
         now = datetime.datetime.now()
-        #AH = '{}:00:00'.format(alarmHour)
         x = now.strftime("%H:%M")
         y = '{}:{}'.format(alarmHour, alarmMinute)
+        if alarmHour < 10:
+            y = '0{}:{}'.format(alarmHour, alarmMinute)
+        if alarmMinute < 10:
+            y = '{}:0{}'.format(alarmHour, alarmMinute)
+        if alarmMinute < 10 and alarmHour < 10:
+            y = '0{}:0{}'.format(alarmHour, alarmMinute)
         if y == x:
             alarmnoise()
         else:
